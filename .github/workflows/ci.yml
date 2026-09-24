@@ -12,7 +12,7 @@ permissions:
 jobs:
   test:
     name: Test (Go ${{ matrix.go-version }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -32,7 +32,7 @@ jobs:
 
   lint:
     name: Static analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-go@v7
@@ -43,10 +43,11 @@ jobs:
         with:
           version: latest
           install-go: false
+          use-cache: false
 
   vulnerability-scan:
     name: Vulnerability scan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-go@v7
